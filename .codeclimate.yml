@@ -21,8 +21,7 @@ ratings:
   - "**.php"
   - "**.py"
   - "**.rb"
-exclude_paths: []
 exclude_paths:
-  - "__tests__/"
+  - "__tests__"
   - "webpack.config.js"
   - "handler.js"
