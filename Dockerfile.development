@@ -9,5 +9,3 @@ RUN npm install -g serverless@$ver
 ADD . /app
 
 WORKDIR /app
-
-RUN npm install
