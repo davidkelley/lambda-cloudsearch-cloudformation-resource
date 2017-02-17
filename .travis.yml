@@ -1,17 +1,18 @@
-services:
-  - docker
+language: node_js
 
-sudo: required
+node_js:
+  - "4.3"
 
 before_install:
-  - docker-compose pull
-  - docker-compose build
+  - npm install -g serverless@$ver
+  - npm install
 
 script:
-  - docker-compose run src npm run test:functions
+  - npm run test:functions
 
 after_success:
-  - bundle exec codeclimate-test-reporter
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter
 
 env:
   global:
