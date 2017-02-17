@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  src:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+      args:
+        ver: 1.6.1
+    command: sls
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_REGION
+    volumes:
+      - .:/app

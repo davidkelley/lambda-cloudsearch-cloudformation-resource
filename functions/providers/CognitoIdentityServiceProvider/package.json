@@ -1,0 +1,7 @@
+{
+  "name": "cognitoIdentityServiceProvider",
+  "description": "Recieves an update, delete or create event for the votes DynamoDB table which in turn updates the calculated rolling score for the associated post",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./cognitoIdentityServiceProvider.js"
+}

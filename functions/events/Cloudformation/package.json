@@ -1,0 +1,7 @@
+{
+  "name": "cloudformation",
+  "description": "",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./cloudformation.js"
+}

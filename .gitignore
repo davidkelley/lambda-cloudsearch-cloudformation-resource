@@ -1,0 +1,9 @@
+node_modules
+.serverless
+npm-debug.log
+.env
+client_secret.json
+.DS_Store
+jest
+coverage
+.webpack
