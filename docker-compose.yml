@@ -14,3 +14,4 @@ services:
       - AWS_REGION
     volumes:
       - .:/app
+      - /app/node_modules

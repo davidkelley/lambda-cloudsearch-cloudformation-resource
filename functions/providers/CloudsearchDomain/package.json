@@ -1,7 +1,7 @@
 {
-  "name": "cognitoIdentity",
+  "name": "cloudsearchDomain",
   "description": "",
   "version": "0.0.0",
   "private": true,
-  "main": "./cognitoIdentity.js"
+  "main": "./cloudsearchDomain.js"
 }

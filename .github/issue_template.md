@@ -10,7 +10,7 @@ Describe what should happen
 Describe what happens instead
 
 ### System configuration
-**Cognito Cloudformation Resource version**:
+**Cloudsearch Cloudformation Resource version**:
 
 **Lambda Configuration**:
 * Node Version:

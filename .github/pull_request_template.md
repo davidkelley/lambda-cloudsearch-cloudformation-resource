@@ -15,4 +15,4 @@ Finally, if your pull request affects documentation or any non-code
 changes, guidelines for those changes are [available
 here](https://github.com/davidkelley/lambda-cloudsearch-cloudformation-resource/blob/master/CONTRIBUTING.md)
 
-Thanks for contributing to Cognito Cloudformation Resource!
+Thanks for contributing to Cloudsearch Cloudformation Resource!

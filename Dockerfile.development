@@ -4,8 +4,6 @@ MAINTAINER David Kelley <david.james.kelley@gmail.com>
 
 ARG ver
 
-ENV NODE_PATH=$NODE_PATH:/node_modules SERVERLESS_VERSION=$ver
-
 RUN npm install -g serverless@$ver
 
 ADD . /app
@@ -13,5 +11,3 @@ ADD . /app
 WORKDIR /app
 
 RUN npm install
-
-RUN mv node_modules /node_modules

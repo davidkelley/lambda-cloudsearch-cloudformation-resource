@@ -28,13 +28,13 @@ See: [CreateDomain](http://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-0
 
 ### Ref
 
-When the logical ID of this resource is provided to the Ref intrinsic function, Ref returns the ID of the resource, such as `cloudsearch-us-east-1-unique-identifier`.
+When the logical ID of this resource is provided to the Ref intrinsic function, Ref returns the ID of the resource, such as `cloudsearch-us-east-1-domain-name`.
 
 ### Fn::GetAtt
 
-`DomainName` (String)
+`DomainId` (String)
 
-> A string that represents the name of a domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).
+> An internally generated unique identifier for a domain.
 
 `ARN` (String)
 

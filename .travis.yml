@@ -1,0 +1,18 @@
+services:
+  - docker
+
+sudo: required
+
+before_install:
+  - docker-compose pull
+  - docker-compose build
+
+script:
+  - docker-compose run src npm run test:functions:watch
+
+after_success:
+  - bundle exec codeclimate-test-reporter
+
+env:
+  global:
+    - secure: "JIsPzRiEkEcN9xXgdFJIWEdAyxPo1TbBE0du1tI7GF2RIVSdngHHD5hf3KiJ0tcwvPejKi54P4sSOaIX2QwzT+P9bZXFuOIpIV7KKvaEZxGwjegFo8/bwAdGLAdS4boXtZZ5qJkQ/H64dYjHJ7nrGHwWbGuQ+tNXyByYpWUbeMoQiwvN7aJ+WNtVcYx8f8RsO91nKuZWRMVNycBHZDmYlwwiE77P6vp3sl2795pigeGy8hvjbHSG3yjifuN6Gtf3HFnmi/lW62bdjfGxCfVGwOV49RQF+l0ms3psYMTixkDcoN3dOaCeMPXhPK2fTSLKJV56yzRDQsfQCfIwK1eSoqvKTE6g/3GCM9yBL4Sk42Uby/3L1kBfVujCvnzLeveA3pg2dpBjSwI/gWFQFT1bZYAnLCRugM9nKmtuXrX4S9aJaVME0HUFwlscloAxUtzW3/3/3dtb3F2bjUZIy0AHmBEieHFaoQGHNNhUFwvkEEq0y4F8Q5cyDMB0lX/rLFzkpo+jJL4/5GNG/YQ9WJqc1whGfvMlFfXHfBlA6oOwC98NQOsBbD/4qr4rVfohUy80vSMUg/j9da75SgdRI9A5+Ep8LC5l5uWwWY7ViMK825gbvDBGGKYBgcXv+Th5mXrPewTvbTXkfVPW2m0vs+5/1mW68IKV+JJefvz8RER2vVg="

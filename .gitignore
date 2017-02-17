@@ -7,3 +7,4 @@ client_secret.json
 jest
 coverage
 .webpack
+.idea
