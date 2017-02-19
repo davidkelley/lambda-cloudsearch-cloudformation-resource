@@ -1,11 +1,11 @@
 module.exports = {
   entry: [
     'babel-polyfill',
-    './handler.js',
+    './handler.js'
   ],
   target: 'node',
   externals: {
-    'aws-sdk': 'aws-sdk',
+    'aws-sdk': 'aws-sdk'
   },
   module: {
     loaders: [
@@ -13,12 +13,12 @@ module.exports = {
         test: /\.js$/,
         loaders: ['babel'],
         include: __dirname,
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.json$/,
-        loader: 'json-loader',
-      },
-    ],
-  },
+        loader: 'json-loader'
+      }
+    ]
+  }
 };
