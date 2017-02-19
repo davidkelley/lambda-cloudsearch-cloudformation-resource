@@ -1,10 +1,5 @@
 language: node_js
 
-node_js:
-  - "4.3"
-  - "6"
-  - "node"
-
 before_install:
   - npm install -g serverless@1.7.0
   - npm install
