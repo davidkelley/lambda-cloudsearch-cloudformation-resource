@@ -84,8 +84,6 @@ describe('λ.CloudsearchDomain', () => {
         expect(response.Data).toEqual(expect.objectContaining({
           DomainId: expect.any(String),
           ARN: expect.any(String),
-          'DocService.Endpoint': expect.any(String),
-          'SearchService.Endpoint': expect.any(String),
         }))
       });
 

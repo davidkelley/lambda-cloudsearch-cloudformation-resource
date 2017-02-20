@@ -5,7 +5,6 @@ import Joi from 'joi';
 import Cloudformation, { wrap } from '../../events/Cloudformation';
 import { OK, ERROR, AWS_REGION } from '../../global';
 import { Schema } from './schema';
-import { LambdaEvents } from 'lambda-events';
 
 const CREATE_DOMAIN = 'createDomain';
 
