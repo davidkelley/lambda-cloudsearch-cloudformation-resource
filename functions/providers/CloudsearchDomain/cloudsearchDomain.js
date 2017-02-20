@@ -5,6 +5,7 @@ import Joi from 'joi';
 import Cloudformation, { wrap } from '../../events/Cloudformation';
 import { OK, ERROR, AWS_REGION } from '../../global';
 import { Schema } from './schema';
+import { LambdaEvents } from 'lambda-events';
 
 const CREATE_DOMAIN = 'createDomain';
 
@@ -18,11 +19,10 @@ class CloudsearchDomain extends Cloudformation {
       const { DomainId, DomainName, ARN, DocService, SearchService } = DomainStatus;
       this.response.respond(OK, {
         id: DomainName,
+        reason: `Created: ${DomainName}`,
         data: {
           DomainId,
           ARN,
-          'DocService.Endpoint': DocService.Endpoint,
-          'SearchService.Endpoint': SearchService.Endpoint
         }
       });
     } catch (err) {

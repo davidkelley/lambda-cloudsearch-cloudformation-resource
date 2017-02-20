@@ -17,16 +17,26 @@ class Response {
   async respond(...args) {
     try {
       const body = this.payload(...args);
-      await this.validate(body, this.schema);
+      const { validated } = await this.validate(body, this.schema);
       await this.respondToCloudformation({ body });
-      this.cb(null, body);
+      return this.cb(null, body);
     } catch (err) {
-      this.cb(new Error(err));
+      return this.cb(new Error(err));
     }
   }
 
-  respondToCloudformation({ body = {}, method = 'POST', json = true }) {
-    const payload = { uri: this.ResponseURL, method, json, body };
+  respondToCloudformation({ body = {} }) {
+    const parsed = JSON.stringify(body);
+    const payload = {
+      url: this.ResponseURL,
+      method: 'PUT',
+      port: 443,
+      body: parsed,
+      headers: {
+        'content-type': '',
+        'content-length': parsed.length,
+      }
+    };
     return Promise.fromCallback(cb => request(payload, cb));
   }
 

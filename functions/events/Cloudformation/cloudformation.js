@@ -16,6 +16,7 @@ class Cloudformation {
   }
 
   get properties() {
+    delete(this.event.ResourceProperties.ServiceToken);
     return this.event.ResourceProperties;
   }
 

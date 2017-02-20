@@ -18,3 +18,12 @@ plugins:
 functions:
   CloudsearchDomain:
     handler: handler.CloudsearchDomain
+
+resources:
+  Outputs:
+    LambdaFunctionArnRef:
+      Description: Exported Ref value for Lambda function
+      Value:
+        Fn::GetAtt: [CloudsearchDomainLambdaFunction, Arn]
+      Export:
+        Name: CloudsearchDomainResourceArn
