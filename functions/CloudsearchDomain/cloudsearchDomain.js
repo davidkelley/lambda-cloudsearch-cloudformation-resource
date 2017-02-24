@@ -1,9 +1,9 @@
 import AWS from 'aws-sdk';
 import Promise from 'bluebird';
 import Joi from 'joi';
+import { Cloudformation, OK, ERROR } from 'node-lambda-events';
 
-import Cloudformation, { wrap } from '../../events/Cloudformation';
-import { OK, ERROR, AWS_REGION } from '../../global';
+import { AWS_REGION } from '../global';
 import { Schema } from './schema';
 
 const CREATE_DOMAIN = 'createDomain';
@@ -56,4 +56,4 @@ class CloudsearchDomain extends Cloudformation {
   }
 }
 
-export default wrap(CloudsearchDomain);
+export default Cloudformation.wrap(CloudsearchDomain);

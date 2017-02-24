@@ -12,7 +12,8 @@
     "babel-runtime": "6.11.6",
     "request": "2.79.0",
     "joi": "10.2.1",
-    "immutable": "3.8.1"
+    "immutable": "3.8.1",
+    "node-lambda-events": "0.0.10"
   },
   "devDependencies": {
     "aws-sdk-mock": "~1.6.1",

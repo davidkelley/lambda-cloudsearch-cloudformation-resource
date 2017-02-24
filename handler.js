@@ -1,4 +1,4 @@
-import CloudsearchDomain from './functions/providers/CloudsearchDomain';
+import CloudsearchDomain from './functions/CloudsearchDomain';
 
 export {
   CloudsearchDomain,

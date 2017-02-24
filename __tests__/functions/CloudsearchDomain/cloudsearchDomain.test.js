@@ -3,9 +3,9 @@
 import AWS from 'aws-sdk-mock';
 import faker from 'faker';
 
-jest.mock('../../../__mocks__/request');
+jest.mock('../../__mocks__/request');
 
-const mod = require('../../../../handler');
+const mod = require('../../../handler');
 
 const jestPlugin = require('serverless-jest-plugin');
 
