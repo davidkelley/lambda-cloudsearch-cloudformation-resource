@@ -11,6 +11,7 @@ provider:
         - cloudsearch:*
       Resource:
         - "*"
+
 plugins:
   - serverless-webpack
   - serverless-jest-plugin
@@ -21,8 +22,8 @@ functions:
 
 resources:
   Outputs:
-    LambdaFunctionArnRef:
-      Description: Exported Ref value for Lambda function
+    CloudsearchDomainArnRef:
+      Description: Exported Ref value for CloudsearchDomain
       Value:
         Fn::GetAtt: [CloudsearchDomainLambdaFunction, Arn]
       Export:

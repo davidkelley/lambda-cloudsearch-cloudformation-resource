@@ -1,11 +1,17 @@
 FROM node:6.6
 
-MAINTAINER David Kelley <david.james.kelley@gmail.com>
-
 ARG ver
+
+ENV PATH=/node_modules/.bin:$PATH NODE_PATH=$NODE_PATH:/node_modules SERVERLESS_VERSION=$ver
 
 RUN npm install -g serverless@$ver
 
-ADD . /app
+WORKDIR /
 
-WORKDIR /app
+ADD package.json /package.json
+
+RUN npm install
+
+ADD . /service
+
+WORKDIR /service

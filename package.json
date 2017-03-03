@@ -13,7 +13,7 @@
     "request": "2.79.0",
     "joi": "10.2.1",
     "immutable": "3.8.1",
-    "node-lambda-events": "0.0.10"
+    "node-lambda-events": "0.1.3"
   },
   "devDependencies": {
     "aws-sdk-mock": "~1.6.1",
@@ -26,9 +26,10 @@
     "babel-polyfill": "6.13.0",
     "babel-register": "6.16.3",
     "eslint": "^3.1.1",
-    "eslint-config-airbnb": "~14.1.0",
+    "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.11.1",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^5.2.2",
     "faker": "~3.1.0",
     "jest": "~18.1",
     "json-loader": "^0.5.4",
@@ -53,7 +54,7 @@
   },
   "scripts": {
     "lint": "eslint events functions pages test handler.js webpack.config.js",
-    "test:functions": "jest __tests__/.+/*.test.js --coverage --notify",
-    "test:functions:watch": "npm run test:functions -- --reporter min --watch"
+    "test": "jest __tests__/.+/*.test.js --coverage --notify",
+    "test:watch": "npm run test -- --reporter min --watch"
   }
 }

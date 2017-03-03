@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: Launches a Simple Test Cloudsearch Domain
+
+Resources:
+
+  SimpleCloudsearchDomain:
+    Type: Custom::CloudsearchDomain
+    Properties:
+      ServiceToken:
+        Fn::ImportValue: CloudsearchDomainResourceArn
+      DomainName:
+        Ref: AWS::StackName
+
+Outputs:
+
+  Name:
+    Description: The Name for the Clousearch Domain
+    Value:
+      Ref: SimpleCloudsearchDomain
+
+  Arn:
+    Description: The ARN for the Clousearch Domain
+    Value:
+      Fn::GetAtt: [SimpleCloudsearchDomain, ARN]
+
+  Id:
+    Description: The DomainId for the Clousearch Domain
+    Value:
+      Fn::GetAtt: [SimpleCloudsearchDomain, DomainId]

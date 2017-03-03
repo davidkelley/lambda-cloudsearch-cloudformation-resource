@@ -15,31 +15,31 @@ class CloudsearchDomain extends Cloudformation {
     try {
       const validated = await this.validate(this.properties);
       const { DomainStatus } = await this.cloudsearch(CREATE_DOMAIN, validated);
-      const { DomainId, DomainName, ARN, DocService, SearchService } = DomainStatus;
-      this.response.respond(OK, {
+      const { DomainId, DomainName, ARN } = DomainStatus
+      this.respond(OK, {
         id: DomainName,
         reason: `Created: ${DomainName}`,
         data: {
           DomainId,
-          ARN,
+          ARN
         }
       });
     } catch (err) {
-      this.response.respond(ERROR, { reason: err.toString() });
+      this.respond(ERROR, { reason: err.toString() });
     }
   }
 
   async update() {
-    this.response.respond(ERROR, { reason: "refused to update domain" });
+    this.respond(ERROR, { reason: "refused to update domain" });
   }
 
   async delete() {
     try {
       const payload = { DomainName: this.id };
       await this.cloudsearch(DELETE_DOMAIN, payload);
-      this.response.respond(OK, { id: this.id });
+      this.respond(OK, { id: this.id });
     } catch (err) {
-      this.response.respond(ERROR, { reason: err.toString() });
+      this.respond(ERROR, { reason: err.toString() });
     }
   }
 

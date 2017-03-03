@@ -94,7 +94,7 @@ describe('λ.CloudsearchDomain', () => {
       });
 
       afterAll(() => {
-        AWS.restore('CloudSearch', 'createDomain')
+        AWS.restore('CloudSearch', 'createDomain');
       });
     });
 

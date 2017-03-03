@@ -40,11 +40,11 @@ When the logical ID of this resource is provided to the Ref intrinsic function, 
 
 > The Amazon Resource Name (ARN) of the search domain. See Identifiers for IAM Entities in Using AWS Identity and Access Management for more information.
 
-`DocService.Endpoint` (String)
+`DocEndpoint` (String)
 
 > The endpoint to which service requests can be submitted. For example, `search-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com` or `doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com`.
 
-`SearchService.Endpoint` (String)
+`SearchEndpoint` (String)
 
 > The endpoint to which service requests can be submitted. For example, `search-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com` or `doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com`.
 
