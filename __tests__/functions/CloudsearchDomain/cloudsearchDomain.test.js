@@ -74,10 +74,6 @@ describe('λ.CloudsearchDomain', () => {
 
     describe('when the request is valid', () => {
       beforeAll(() => {
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
-      });
-
-      beforeAll(() => {
         AWS.mock('CloudSearch', 'createDomain', mockCloudsearch);
       });
 
@@ -99,10 +95,6 @@ describe('λ.CloudsearchDomain', () => {
 
       afterAll(() => {
         AWS.restore('CloudSearch', 'createDomain');
-      });
-
-      afterAll(() => {
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
       });
     });
 
