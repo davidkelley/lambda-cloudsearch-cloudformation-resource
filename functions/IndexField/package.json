@@ -1,7 +1,0 @@
-{
-  "name": "indexField",
-  "description": "",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./indexField.js"
-}

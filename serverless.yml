@@ -20,18 +20,6 @@ functions:
   CloudsearchDomain:
     handler: handler.CloudsearchDomain
 
-  AnalysisScheme:
-    handler: handler.AnalysisScheme
-
-  Expression:
-    handler: handler.Expression
-
-  IndexField:
-    handler: handler.IndexField
-
-  Suggester:
-    handler: handler.Suggester
-
 resources:
   Outputs:
     CloudsearchDomainArnRef:
@@ -40,31 +28,3 @@ resources:
         Fn::GetAtt: [CloudsearchDomainLambdaFunction, Arn]
       Export:
         Name: CloudsearchDomainResourceArn
-
-    AnalysisSchemeArnRef:
-      Description: Exported Ref value for AnalysisScheme
-      Value:
-        Fn::GetAtt: [AnalysisSchemeLambdaFunction, Arn]
-      Export:
-        Name: CloudsearchAnalysisSchemeArn
-
-    ExpressionArnRef:
-      Description: Exported Ref value for Expression
-      Value:
-        Fn::GetAtt: [ExpressionLambdaFunction, Arn]
-      Export:
-        Name: CloudsearchExpressionArn
-
-    IndexFieldArnRef:
-      Description: Exported Ref value for IndexField
-      Value:
-        Fn::GetAtt: [IndexFieldLambdaFunction, Arn]
-      Export:
-        Name: CloudsearchIndexFieldArn
-
-    SuggesterArnRef:
-      Description: Exported Ref value for Suggester
-      Value:
-        Fn::GetAtt: [SuggesterLambdaFunction, Arn]
-      Export:
-        Name: CloudsearchSuggesterArn

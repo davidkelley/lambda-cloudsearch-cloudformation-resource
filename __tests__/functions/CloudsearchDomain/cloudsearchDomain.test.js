@@ -72,33 +72,6 @@ describe('λ.CloudsearchDomain', () => {
       });
     });
 
-    const mockDescribe = jest.fn().mockImplementation((params, cb) => {
-      cb(null, {
-        DomainStatusList: [{
-          DomainId: faker.random.uuid(),
-          DomainName: params.DomainNames[0],
-          ARN: 'arn:aws:cloudsearch:...',
-          Created: true,
-          Deleted: false,
-          DocService: {
-            Endpoint: faker.internet.url()
-          },
-          SearchService: {
-            Endpoint: faker.internet.url()
-          },
-          RequiresIndexDocuments: true,
-          Processing: false,
-          SearchInstanceType: 's1.micro',
-          SearchPartitionCount: 1,
-          SearchInstanceCount: 1,
-          Limits: {
-            MaximumReplicationCount: 1,
-            MaximumPartitionCount: 1
-          }
-        }]
-      })
-    });
-
     describe('when the request is valid', () => {
       beforeAll(() => {
         jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
@@ -106,7 +79,6 @@ describe('λ.CloudsearchDomain', () => {
 
       beforeAll(() => {
         AWS.mock('CloudSearch', 'createDomain', mockCloudsearch);
-        AWS.mock('CloudSearch', 'describeDomains', mockDescribe);
       });
 
       it('succesfully creates a Cloudsearch Domain', async () => {
@@ -127,7 +99,6 @@ describe('λ.CloudsearchDomain', () => {
 
       afterAll(() => {
         AWS.restore('CloudSearch', 'createDomain');
-        AWS.restore('CloudSearch', 'describeDomains');
       });
 
       afterAll(() => {
