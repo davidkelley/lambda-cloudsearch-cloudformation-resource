@@ -1,0 +1,109 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: Launches a Simple Test Cloudsearch Domain
+
+Resources:
+
+  SimpleCloudsearchDomain:
+    Type: Custom::CloudsearchDomain
+    Properties:
+      ServiceToken:
+        Fn::ImportValue: CloudsearchDomainResourceArn
+      DomainName:
+        Ref: AWS::StackName
+
+  # SimpleTitleSuggester:
+  #   Type: Custom::CloudsearchSuggester
+  #   Properties:
+  #     ServiceToken:
+  #       Fn::ImportValue: CloudsearchAnalysisSchemeArn
+  #     DomainName:
+  #       Ref: SimpleCloudsearchDomain
+  #     Suggester:
+  #       SuggesterName: title_search
+  #       DocumentSuggesterOptions:
+  #         SourceField: title
+  #         FuzzyMatching: high
+  #         SortExpression:
+  #           Ref: SimpleTitleSuggesterSortingExpression
+
+  # SimpleTitleSuggesterSortingExpression:
+  #   Type: Custom::CloudsearchExpression
+  #   Properties:
+  #     ServiceToken:
+  #       Fn::ImportValue: CloudsearchAnalysisSchemeArn
+  #     DomainName:
+  #       Ref: SimpleCloudsearchDomain
+  #     Expression:
+  #       ExpressionName: title_suggester_sorting
+  #       ExpressionValue: "_time - created_at"
+
+  SimpleTitleIndexField:
+    Type: Custom::CloudsearchIndexField
+    Properties:
+      ServiceToken:
+        Fn::ImportValue: CloudsearchAnalysisSchemeArn
+      DomainName:
+        Ref: SimpleCloudsearchDomain
+      IndexField:
+        IndexFieldName: title
+        IndexFieldType: text
+        TextOptions:
+          AnalysisScheme:
+            Ref: SimpleAnalysisScheme
+          SourceField: title
+
+  # SimpleTagsIndexField:
+  #   Type: Custom::CloudsearchIndexField
+  #   Properties:
+  #     ServiceToken:
+  #       Fn::ImportValue: CloudsearchAnalysisSchemeArn
+  #     DomainName:
+  #       Ref: SimpleCloudsearchDomain
+  #     IndexField:
+  #       IndexFieldName: tags
+  #       IndexFieldType: text-array
+  #       TextArrayOptions:
+  #         AnalysisScheme:
+  #           Ref: SimpleAnalysisScheme
+
+  # SimpleCreatedAtIndexField:
+  #   Type: Custom::CloudsearchIndexField
+  #   Properties:
+  #     ServiceToken:
+  #       Fn::ImportValue: CloudsearchAnalysisSchemeArn
+  #     DomainName:
+  #       Ref: SimpleCloudsearchDomain
+  #     IndexField:
+  #       IndexFieldName: created_at
+  #       IndexFieldType: int
+  #       IntOptions:
+  #         SourceField: created_at
+
+  SimpleAnalysisScheme:
+    Type: Custom::CloudsearchAnalysisScheme
+    Properties:
+      ServiceToken:
+        Fn::ImportValue: CloudsearchAnalysisSchemeArn
+      DomainName:
+        Ref: SimpleCloudsearchDomain
+      AnalysisScheme:
+        AnalysisSchemeName: my_analysis_scheme
+        AnalysisSchemeLanguage: en
+
+Outputs:
+
+  Name:
+    Description: The Name for the Clousearch Domain
+    Value:
+      Ref: SimpleCloudsearchDomain
+
+  Arn:
+    Description: The ARN for the Clousearch Domain
+    Value:
+      Fn::GetAtt: [SimpleCloudsearchDomain, ARN]
+
+  Id:
+    Description: The DomainId for the Clousearch Domain
+    Value:
+      Fn::GetAtt: [SimpleCloudsearchDomain, DomainId]

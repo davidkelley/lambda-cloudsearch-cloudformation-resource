@@ -6,37 +6,32 @@ import { Cloudformation, OK, ERROR } from 'node-lambda-events';
 import { AWS_REGION } from '../global';
 import { Schema } from './schema';
 
-const CREATE_DOMAIN = 'createDomain';
+const CREATE_ANALYSIS_SCHEME = 'defineAnalysisScheme';
 
-const DELETE_DOMAIN = 'deleteDomain';
+const DELETE_ANALYSIS_SCHEME = 'deleteAnalysisScheme';
 
-class CloudsearchDomain extends Cloudformation {
+class AnalysisScheme extends Cloudformation {
   async create() {
     try {
       const validated = await this.validate(this.properties);
-      const { DomainStatus } = await this.cloudsearch(CREATE_DOMAIN, validated);
-      const { DomainId, DomainName, ARN } = DomainStatus
-      this.respond(OK, {
-        id: DomainName,
-        reason: `Created: ${DomainName}`,
-        data: {
-          DomainId,
-          ARN
-        }
-      });
+      const { AnalysisScheme } = await this.cloudsearch(CREATE_ANALYSIS_SCHEME, validated);
+      const { AnalysisSchemeName } = AnalysisScheme.Options;
+      this.respond(OK, { id: AnalysisSchemeName });
     } catch (err) {
       this.respond(ERROR, { reason: err.toString() });
     }
   }
 
   async update() {
-    this.respond(ERROR, { reason: "refused to update domain" });
+    this.respond(ERROR, { reason: "refused to update analysis scheme" });
   }
 
   async delete() {
     try {
-      const payload = { DomainName: this.id };
-      await this.cloudsearch(DELETE_DOMAIN, payload);
+      const validated = await this.validate(this.properties);
+      const { DomainName } = validated;
+      const params = { DomainName, AnalysisSchemeName: this.id };
+      await this.cloudsearch(DELETE_ANALYSIS_SCHEME, params)
       this.respond(OK, { id: this.id });
     } catch (err) {
       this.respond(ERROR, { reason: err.toString() });
@@ -56,4 +51,4 @@ class CloudsearchDomain extends Cloudformation {
   }
 }
 
-export default Cloudformation.wrap(CloudsearchDomain);
+export default Cloudformation.wrap(AnalysisScheme);

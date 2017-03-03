@@ -6,37 +6,32 @@ import { Cloudformation, OK, ERROR } from 'node-lambda-events';
 import { AWS_REGION } from '../global';
 import { Schema } from './schema';
 
-const CREATE_DOMAIN = 'createDomain';
+const CREATE_EXPRESSION = 'defineExpression';
 
-const DELETE_DOMAIN = 'deleteDomain';
+const DELETE_EXPRESSION = 'deleteExpression';
 
-class CloudsearchDomain extends Cloudformation {
+class Expression extends Cloudformation {
   async create() {
     try {
       const validated = await this.validate(this.properties);
-      const { DomainStatus } = await this.cloudsearch(CREATE_DOMAIN, validated);
-      const { DomainId, DomainName, ARN } = DomainStatus
-      this.respond(OK, {
-        id: DomainName,
-        reason: `Created: ${DomainName}`,
-        data: {
-          DomainId,
-          ARN
-        }
-      });
+      const { Expression } = await this.cloudsearch(CREATE_EXPRESSION, validated);
+      const { ExpressionName, ExpressionValue } = Expression.Options;
+      this.respond(OK, { id: ExpressionName, data: { ExpressionValue } });
     } catch (err) {
       this.respond(ERROR, { reason: err.toString() });
     }
   }
 
   async update() {
-    this.respond(ERROR, { reason: "refused to update domain" });
+    this.respond(ERROR, { reason: "refused to update expression" });
   }
 
   async delete() {
     try {
-      const payload = { DomainName: this.id };
-      await this.cloudsearch(DELETE_DOMAIN, payload);
+      const validated = await this.validate(this.properties);
+      const { DomainName } = validated;
+      const { ExpressionName } = validated.Expression;
+      await this.cloudsearch(DELETE_EXPRESSION, { DomainName, ExpressionName })
       this.respond(OK, { id: this.id });
     } catch (err) {
       this.respond(ERROR, { reason: err.toString() });
@@ -56,4 +51,4 @@ class CloudsearchDomain extends Cloudformation {
   }
 }
 
-export default Cloudformation.wrap(CloudsearchDomain);
+export default Cloudformation.wrap(Expression);
