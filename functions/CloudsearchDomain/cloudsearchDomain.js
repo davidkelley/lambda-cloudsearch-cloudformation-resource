@@ -25,21 +25,25 @@ class CloudsearchDomain extends Cloudformation {
         }
       });
     } catch (err) {
-      this.respond(ERROR, { reason: err.toString() });
+      this.respond(ERROR, { reason: err.toString(), id: ERROR });
     }
   }
 
   async update() {
-    this.respond(ERROR, { reason: "refused to update domain" });
+    this.respond(ERROR, { reason: "refused to update domain", id: this.id });
   }
 
   async delete() {
     try {
-      const payload = { DomainName: this.id };
-      await this.cloudsearch(DELETE_DOMAIN, payload);
-      this.respond(OK, { id: this.id });
+      if (this.id) {
+        const payload = { DomainName: this.id };
+        await this.cloudsearch(DELETE_DOMAIN, payload);
+        this.respond(OK, { id: this.id });
+      } else {
+        this.respond(OK, { id: OK });
+      }
     } catch (err) {
-      this.respond(ERROR, { reason: err.toString() });
+      this.respond(ERROR, { reason: err.toString(), id: ERROR });
     }
   }
 

@@ -7,7 +7,7 @@ CloudsearchDomain:
   Type: Custom::CloudsearchDomain
   Properties:
     ServiceToken: String # Required
-    DomainName: String # Required
+    DomainName: String
 ```
 
 ## Properties
